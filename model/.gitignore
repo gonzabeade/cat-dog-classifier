@@ -1,2 +1,7 @@
-/data/*
-
+data/*
+models/*
+out
+.vscode 
+.venv
+*.png
+__pycache__
