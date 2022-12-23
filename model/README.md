@@ -27,7 +27,7 @@ The entry point for the module is `main.py`. It receives three compulsory parame
 3. An output path, where the generated model is to be saved. If the model already exists, it is simply loaded. 
 4. Optional. A path for a simple digest plot of the predictions to be dumped. 
 
-#### 3. CNN Architecture
+#### 4. CNN Architecture
 
 The module generates a trained convolutional neural network. The sequential model is made up of the following layers: 
 1. A resizing layer, so that any picture has size 64x64 before being input to the CNN. 
@@ -40,7 +40,7 @@ The module generates a trained convolutional neural network. The sequential mode
 
 ADAM was used as an optimizer and binary cross-entropy as a loss function. 
 
-#### 4. Output
+#### 5. Output
 
 The module exports a trained model with the previously described architecture and 10 epochs by default. Optionally, if a path is specified as fourth argument, a sample of pictures is taken from the test set and a digest plot is exported. 
 
