@@ -42,6 +42,7 @@ def plot_predictions(ds, path, many, model):
 
     # Get the class names from the dataset
     class_names = ds.class_names
+    print(type(ds))
 
     # Set the dimension of the figure
     plt.figure(figsize=(15, 15))
@@ -50,12 +51,15 @@ def plot_predictions(ds, path, many, model):
     for images, labels in ds.take(1):
         for i in range(many):
             plt.subplot(int(many/3)+1, 3, i+1)
+            print(type(images[i]))
             im = images[i].numpy().astype("uint8")
+            print(im.shape)
             plt.imshow(im)
 
             im = im.reshape(1, im.shape[0], im.shape[1], im.shape[2])
-            result = model.predict(im)
-            result = 0 if result[0][0] < 0.5 else 1
+            print(im.shape)
+            # result = model.predict(im)
+            result = 0 # if result[0][0] < 0.5 else 1
 
             plt.title(
                 "{} - Predicted: {}"

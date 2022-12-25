@@ -18,13 +18,15 @@ def new_model(train_ds, test_ds, model_path, epochs):
         Output: None, but saves a model as a secondary effect
     """
 
+
+
     # Rescaling layer
     # - Normalize RGB values so that they are between 0 and 1
     layer_rescale = Rescaling(1./255, name='l_rescaling')
 
     # Resizing layer
-    # - Crop the image so that it is of size 64 by 64
-    layer_resize = Resizing(64, 64, crop_to_aspect_ratio=True, name='l_resize')
+    # - Resize the image so that it is 64x64
+    layer_resize = Resizing(64, 64, input_shape=(None, None, 3), crop_to_aspect_ratio=False, name='l_resize')
 
     # Convolutional layer
     # - 32 filters in total
