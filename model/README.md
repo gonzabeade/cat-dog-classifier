@@ -1,4 +1,4 @@
-## Model: CNN
+## Model: CNN using Keras
 
 This repository contains the necessary files to successfully train a CNN to identify whether a picture contains cats or dogs. 
 
@@ -39,6 +39,8 @@ The module generates a trained convolutional neural network. The sequential mode
 7. An output node with sigmoid activation function. 
 
 ADAM was used as an optimizer and binary cross-entropy as a loss function. 
+
+The idea is that the network transparently consumes pictures of any dimensions and that no image-preprocessing is needed to test for a value. 
 
 #### 5. Output
 
