@@ -20,11 +20,11 @@ def new_model(train_ds, test_ds, model_path, epochs):
 
     # Rescaling layer
     # - Normalize RGB values so that they are between 0 and 1
-    layer_rescale = Rescaling(1./255)
+    layer_rescale = Rescaling(1./255, name='l_rescaling')
 
     # Resizing layer
     # - Crop the image so that it is of size 64 by 64
-    layer_resize = Resizing(64, 64, crop_to_aspect_ratio=True)
+    layer_resize = Resizing(64, 64, crop_to_aspect_ratio=True, name='l_resize')
 
     # Convolutional layer
     # - 32 filters in total
@@ -32,27 +32,37 @@ def new_model(train_ds, test_ds, model_path, epochs):
     # - Each input will be RGB and 64x64
     # - ReLU as an activation function
     layer_1 = Conv2D(
-        32, (3, 3),
+        32, 
+        (3, 3),
         input_shape=(64, 64, 3),
-        activation='relu'
+        activation='relu', 
+        name='l_conv'
     )
 
     # Pooling layer
     # - We will use MaxPooling
     # - The pool size is 2x2
-    layer_2 = MaxPooling2D(pool_size=(2, 2))
+    layer_2 = MaxPooling2D(pool_size=(2, 2), name="l_pool")
 
     # Flattening later
-    layer_3 = Flatten()
+    layer_3 = Flatten(name="l_flatten")
 
     # Fully connected layer
     # - 128 neurons
     # - ReLU as an activation function
-    layer_4 = Dense(units=128, activation='relu')
+    layer_4 = Dense(
+        units=128, 
+        activation='relu',
+        name='l_dense'
+    )
 
     # Output layer
     # - Sigmoid as an activation
-    layer_output = Dense(units=1, activation='sigmoid')
+    layer_output = Dense(
+        units=1, 
+        activation='sigmoid', 
+        name='l_output'
+    )
 
     # Build the model
     layers = [
