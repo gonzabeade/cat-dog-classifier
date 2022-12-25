@@ -1,15 +1,11 @@
-from fastapi import FastAPI, Header, Depends, \
-     HTTPException, status, File, UploadFile
+from fastapi import FastAPI, HTTPException, status, File, UploadFile
 import uvicorn
 import sys
 import tensorflow as tf
 from PIL import Image
-import io 
-import numpy as np 
-from matplotlib import pyplot as plt 
+import io
+import numpy as np
 
-
-# Uninstall flake8
 
 app = FastAPI()
 model = None
@@ -18,7 +14,8 @@ valid_image_types = ["png", "jpeg", "jpg"]
 
 def val_content_type(file: UploadFile):
     """
-        Validates the request content-type to be image/png
+        Validates the request content-type to be image/x 
+        where x is either png, jpeg, jpg
     """
     type = file.content_type.split("/")
     print(type[1], type[1] not in valid_image_types)
@@ -33,17 +30,23 @@ def val_content_type(file: UploadFile):
 async def images(
     file: UploadFile = File(...)
 ):
-    # val_content_type(file)
+    val_content_type(file)
 
     bytes = await file.read()
-    im =  np.asarray(Image.open(io.BytesIO(bytes))).astype("uint8")
-    print(im.shape)
-    plt.imshow(im)
+    im = np.asarray(Image.open(io.BytesIO(bytes))).astype("uint8")
+
+    # Add batchsize value of 1
     im = np.expand_dims(im, axis=0)
-    print(im.shape)
-    print(model.predict(im))
-    await file.close()       
-    return {"message": file.content_type}
+    result = model.predict(im)
+
+    # transform to native Python type
+    result = result[0][0].item()
+    await file.close()
+    return {
+        "fileName": file.filename,
+        "fileContentType": file.content_type,
+        "prediction": (result)
+    }
 
 
 if __name__ == '__main__':
