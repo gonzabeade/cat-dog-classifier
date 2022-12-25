@@ -24,7 +24,6 @@ kiwisolver==1.4.4
 libclang==14.0.6
 Markdown==3.4.1
 MarkupSafe==2.1.1
-matplotlib==3.6.2
 mccabe==0.7.0
 numpy==1.24.0
 oauthlib==3.2.2
