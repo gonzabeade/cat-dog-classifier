@@ -1,13 +1,25 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: '', sans-serif;
+  background-color: #3B4252  ;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.github-logo {
+  background-color: whitesmoke; 
+  border-radius: 45%;
+  padding: 2px; 
+  width: 30px; 
+  margin-top: 10rem;
+
 }
+
+
+.github-logo:hover {
+  background-color: rgb(191, 191, 191); 
+  cursor: pointer;
+
+}
+
+
+
+
