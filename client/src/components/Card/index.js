@@ -23,7 +23,8 @@ const Card = () => {
         let formData = new FormData(); 
         console.log(typeof(image))
         formData.append('file', image); 
-        axios.post("http://localhost:8080/images", formData); 
+        axios.post("http://localhost:8080/images", formData)
+            .then((r)=>setPrediction(r.data.prediction)) 
         e.preventDefault(); 
     }
 
