@@ -5,7 +5,9 @@ import axios from 'axios';
 const Card = () => {
 
     const [prediction, setPrediction] = React.useState(0.7)
+    const [imageURL, setImageURL] = React.useState(null)
     const [image, setImage] = React.useState(null)
+
 
 
     const getLabelFromPrediction = (value) => {
@@ -13,23 +15,23 @@ const Card = () => {
     } 
 
     const handleChange = (e) => {
-        setImage(URL.createObjectURL(e.target.files[0]))
+        setImageURL(URL.createObjectURL(e.target.files[0])); 
+        setImage(e.target.files[0])
     }
 
     const handleSubmit = (e) => {
-        const formData = new FormData(); 
-        console.log(image); 
-        formData.append('image', image, image.name); 
-        axios.post("http://localhost:8080/", formData); 
+        let formData = new FormData(); 
+        console.log(typeof(image))
+        formData.append('file', image); 
+        axios.post("http://localhost:8080/images", formData); 
+        e.preventDefault(); 
     }
 
     return <div>
             <div className="square">
-                <form onSubmit={handleSubmit}>
                     <input type="file" onChange={handleChange}/>
-                    <button type="submit">Submit</button>
-                </form>
-                <img className="uploaded-photo" src={image}></img>
+                    <button onClick={handleSubmit}>Submit</button>
+                {imageURL && <img className="uploaded-photo" src={imageURL}></img>}
 
                 <>
                     {!prediction && <p className="label">Upload a picture to classify it.</p>}
