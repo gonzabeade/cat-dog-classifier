@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException, status, File, UploadFile
+from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 import sys
 import tensorflow as tf
@@ -10,6 +11,14 @@ import numpy as np
 app = FastAPI()
 model = None
 valid_image_types = ["png", "jpeg", "jpg"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 def val_content_type(file: UploadFile):
@@ -30,7 +39,7 @@ def val_content_type(file: UploadFile):
 async def images(
     file: UploadFile = File(...)
 ):
-    val_content_type(file)
+    # val_content_type(file)
 
     bytes = await file.read()
     im = np.asarray(Image.open(io.BytesIO(bytes))).astype("uint8")
