@@ -2,8 +2,8 @@
     border-color: whitesmoke; 
     border: solid; 
     border-width: 3px;
-    background: rgb(44, 56, 87);
     padding: 3rem; 
+    background: rgb(44, 56, 87);
     width: 2rem;
     height: 2rem;
     margin: 2rem auto 0 auto; 
@@ -25,25 +25,23 @@
     border: solid; 
     border-width: 1px;
     background: #6f7787;
-    padding: 3rem; 
+    padding: 4rem; 
     width: 25%;
-    height: 100px;
-    margin: -5rem auto; 
+    height: auto;
+    margin: 0 auto; 
     position: relative;
     overflow: hidden;
     border-radius: 1rem;
 }
 
-
-img {
-    display: inline;
-    margin: 0 auto;
-    height: 100%;
-    width: auto;
+.uploaded-photo {
+    width: 50%; 
 }
+
 
 .labels {
     margin-top: 3rem; 
+    margin-bottom: 1rem; 
 }
 
 .label {
